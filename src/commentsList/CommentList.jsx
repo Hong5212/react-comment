@@ -1,0 +1,27 @@
+import React, {Component} from 'react'
+
+import CommentItem from "../commentItem/CommentItem";
+
+export default class CommentList extends Component {
+  render() {
+    // 接受通过props传递进来的数据
+    const {commentsList, del} = this.props;
+
+    //判断是否显示或隐藏
+    const display = commentsList.length ? 'none': 'block'
+
+    return (
+      <div className="col-md-8">
+        <h3 className="reply">评论回复：</h3>
+        <h2 style={{display}}>暂无评论，点击左侧添加评论！！！</h2>
+        <ul className="list-group">
+          {
+            commentsList.map((comment, index) => <CommentItem
+              comment={comment} key={index} index={index} del={del}/>
+            )
+          }
+        </ul>
+      </div>
+    )
+  }
+}
